@@ -8,7 +8,7 @@ Mailwright and TSM both place a button near Blizzard's mailbox close button. Whe
 
 ## The Solution
 
-The companion moves Mailwright's existing settings button 65 UI units to the left of the close button and raises its frame level by 650 relative to the mailbox. The level offset is the workaround validated in-game for this layout. The layout is reapplied as needed when switching back from TSM to the Blizzard/Mailwright mailbox.
+When it detects the known conflicting layout, the companion moves Mailwright's existing settings button 65 UI units to the left of the close button and sets its frame level to the mailbox level plus 650. Those values were validated in-game. The adjustment stays on the existing button when switching back from TSM to the Blizzard/Mailwright mailbox.
 
 ## Requirements
 
@@ -16,7 +16,7 @@ The companion moves Mailwright's existing settings button 65 UI units to the lef
 - Mailwright
 - TradeSkillMaster
 
-Version `0.0.1` was tested in-game on Forever with Mailwright `0.2.13` and TradeSkillMaster `4.15.8`.
+The positioning workaround was tested in-game on Forever with Mailwright `0.2.13` and TradeSkillMaster `4.15.8`.
 
 ## Installation
 
@@ -36,11 +36,13 @@ Version `0.0.1` was tested in-game on Forever with Mailwright `0.2.13` and Trade
 
 ## How It Works
 
-The TOC declares both addons as required dependencies. The companion reads `Mailwright.settingsButton` and verifies that it is a button parented to `MailFrame` before adjusting its anchor and frame level. It checks the layout after Mailwright builds its UI and whenever the Blizzard mailbox becomes visible again. The original button retains its appearance, tooltip, and click behavior. Both upstream addons work from their own installed files.
+The TOC requires both addons. The companion checks `Mailwright.settingsButton` after Mailwright builds its UI and whenever the Blizzard mailbox becomes visible again. The button must belong to `MailFrame`, have a single anchor from its right edge to the close button's left edge with zero offset, and start at the mailbox frame level plus 10.
+
+The companion remembers the layout it applied to each button. If a later check finds a changed anchor or frame level, it leaves that button alone. A replacement button is checked independently. The original button retains its appearance, tooltip, and click behavior.
 
 ## Limitations
 
-In-game testing covered the Forever configuration listed above. The addon relies on Mailwright's internal button reference and the current mailbox switching behavior. Upstream updates may require adjustments.
+In-game testing of the positioning workaround covered the Forever configuration listed above. The addon relies on Mailwright's internal button reference and the current mailbox switching behavior. An unfamiliar layout may still overlap. Upstream updates may require adjustments.
 
 ## Credits
 
