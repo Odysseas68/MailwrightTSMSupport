@@ -1,0 +1,20 @@
+# Local tooling and generated files
+/.agents/
+/.codex/
+/.idea/
+/.vscode/
+/test-output/
+/dist/
+*.bak
+*.log
+*.luac
+*.swp
+*.tmp
+*.zip
+*~
+.DS_Store
+Thumbs.db
+
+# Local copies of upstream addons
+Mailwright/
+TradeSkillMaster/

@@ -1,0 +1,7 @@
+## Interface: 16001
+## Title: Mailwright TSM Support
+## Notes: Positions Mailwright's settings button next to the TSM mailbox switch.
+## Version: 0.0.1
+## Dependencies: Mailwright, TradeSkillMaster
+
+MailwrightTSMSupport.lua
